@@ -47,6 +47,7 @@ public class JavaMySQLProject {
     {
     
     //Variables
+    ResultSet rs = null;
     int choice1, choice2;
     String sid,fname,lname;
     
@@ -75,10 +76,11 @@ public class JavaMySQLProject {
         case 1:
             System.out.println("Welcome to the Student Module, Select an operation");
             System.out.println("1. Insert Student Detail");
-            System.out.println("2. Update Student Details");
-            System.out.println("3. Delete Student Detail");
-            System.out.println("4. Select a Student");
-            System.out.println("5. Exit");
+            System.out.println("2. Select a Student");
+            System.out.println("3. Select all Students");
+            System.out.println("4. Update Student Details");
+            System.out.println("5. Delete Student Detail");
+            System.out.println("6. Exit");
             System.out.print("Enter a choice: ");
             choice2 = in.nextInt();
             System.out.println("-----------------------------------------");
@@ -108,6 +110,32 @@ public class JavaMySQLProject {
                     finally
                     {
                         System.out.println("The record has been inserted!");
+                    }
+                    break;
+                    
+                case 2:
+                    System.out.println("1. Insert New Data");
+                    System.out.println("Enter Student ID : ");
+                    sid=str.nextLine();                    
+                    //Add other Variasbles later----Task
+                    try
+                    {
+                    //insert data into a table of a database/schema
+                    Connection conn=getDBConnection();
+                    String selectq= "select * from Student where Student_ID like '%"+sid+"%'";
+                    PreparedStatement selectst = conn.prepareStatement(selectq);
+                    rs= selectst.executeQuery();
+                    
+                    //Add other student details later--Task
+                    while (rs.next()) {
+                    System.out.println(rs.getString("Student_ID") + " " + rs.getString("FirstName")+ 
+                                  " " + rs.getString("LastName"));
+        
+            }
+                    }
+                     catch (Exception e)
+                    {
+                        e.printStackTrace();
                     }
                     break;
             }
