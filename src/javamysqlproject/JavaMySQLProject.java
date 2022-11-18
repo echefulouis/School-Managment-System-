@@ -58,6 +58,7 @@ public class JavaMySQLProject {
     //Loops for Modules
     while(true)
     {
+        System.out.println("-----------------------------------------");
         System.out.println("Welcome to School Database Management System");
         System.out.println("Enter 1. Student Module");
         System.out.println("Enter 2. Courses Module");
@@ -114,7 +115,7 @@ public class JavaMySQLProject {
                     break;
                     
                 case 2:
-                    System.out.println("1. Insert New Data");
+                    System.out.println("2. Select a Student by Student_ID");
                     System.out.println("Enter Student ID : ");
                     sid=str.nextLine();                    
                     //Add other Variasbles later----Task
@@ -131,7 +132,33 @@ public class JavaMySQLProject {
                     System.out.println(rs.getString("Student_ID") + " " + rs.getString("FirstName")+ 
                                   " " + rs.getString("LastName"));
         
-            }
+                        }
+                    }
+                     catch (Exception e)
+                    {
+                        e.printStackTrace();
+                    }
+                    break;
+                    
+                case 3:
+                    System.out.println("3. Select all students");
+                    System.out.println("Enter Student ID : ");
+                    sid=str.nextLine();                    
+                    //Add other Variasbles later----Task
+                    try
+                    {
+                    //Select all from student
+                    Connection conn=getDBConnection();
+                    String selectq= "select * from Student";
+                    PreparedStatement selectst = conn.prepareStatement(selectq);
+                    rs= selectst.executeQuery();
+                    
+                    //Add other student details later--Task
+                    while (rs.next()) {
+                    System.out.println(rs.getString("Student_ID") + " " + rs.getString("FirstName")+ 
+                                  " " + rs.getString("LastName"));
+        
+                        }
                     }
                      catch (Exception e)
                     {
