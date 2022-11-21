@@ -29,7 +29,7 @@ public class JavaMySQLProject {
         //connection to a database
         dbconn = DriverManager.getConnection(connectionurl, username, password);
 
-        System.out.println("Database connection was successful!");
+        //System.out.println("Database connection was successful!");
         
         return dbconn;
 
@@ -66,6 +66,7 @@ public class JavaMySQLProject {
         System.out.println("Enter 4. Exams Module");
         System.out.println("Enter 5. Staff Module");
         System.out.println("Enter 6. Class Section Module");
+        System.out.println("Enter 7. Exit");
         System.out.print("Enter a choice: ");
         
         
@@ -74,19 +75,18 @@ public class JavaMySQLProject {
         
         //Optimize switch statement Later----Task
         switch(choice1){
-        case 1:
-            System.out.println("Welcome to the Student Module, Select an operation");
-            System.out.println("1. Insert Student Detail");
-            System.out.println("2. Select a Student");
-            System.out.println("3. Select all Students");
-            System.out.println("4. Update Student Details");
-            System.out.println("5. Delete Student Detail");
-            System.out.println("6. Exit");
-            System.out.print("Enter a choice: ");
-            choice2 = in.nextInt();
-            System.out.println("-----------------------------------------");
-            switch(choice2){
-                case 1:
+        case 1:            
+            while(true){
+                System.out.println("Welcome to the Student Module, Select an operation");
+                System.out.println("1. Insert Student Detail");
+                System.out.println("2. Select a Student");
+                System.out.println("3. Select all Students");
+                System.out.println("4. Update Student Details");
+                System.out.println("5. Delete Student Detail");
+                System.out.print("Enter a choice: ");
+                choice2 = in.nextInt();
+                System.out.println("-----------------------------------------");
+                if(choice2 == 1){
                     System.out.println("1. Insert New Data");
                     System.out.println("Enter Student ID : ");
                     sid=str.nextLine();
@@ -94,7 +94,7 @@ public class JavaMySQLProject {
                     fname=str.nextLine();
                     System.out.println("Enter Student Last Name : : ");
                     lname=str.nextLine();
-                    
+
                     //Add other Variasbles later----Task
                     try
                     {
@@ -113,8 +113,8 @@ public class JavaMySQLProject {
                         System.out.println("The record has been inserted!");
                     }
                     break;
-                    
-                case 2:
+                }
+                else if (choice2 == 2){
                     System.out.println("2. Select a Student by Student_ID");
                     System.out.println("Enter Student ID : ");
                     sid=str.nextLine();                    
@@ -126,12 +126,12 @@ public class JavaMySQLProject {
                     String selectq= "select * from Student where Student_ID like '%"+sid+"%'";
                     PreparedStatement selectst = conn.prepareStatement(selectq);
                     rs= selectst.executeQuery();
-                    
+
                     //Add other student details later--Task
                     while (rs.next()) {
                     System.out.println(rs.getString("Student_ID") + " " + rs.getString("FirstName")+ 
                                   " " + rs.getString("LastName"));
-        
+
                         }
                     }
                      catch (Exception e)
@@ -139,11 +139,10 @@ public class JavaMySQLProject {
                         e.printStackTrace();
                     }
                     break;
-                    
-                case 3:
+                }
+                else if(choice2 == 3){
                     System.out.println("3. Select all students");
-                    System.out.println("Enter Student ID : ");
-                    sid=str.nextLine();                    
+
                     //Add other Variasbles later----Task
                     try
                     {
@@ -152,22 +151,54 @@ public class JavaMySQLProject {
                     String selectq= "select * from Student";
                     PreparedStatement selectst = conn.prepareStatement(selectq);
                     rs= selectst.executeQuery();
-                    
+
                     //Add other student details later--Task
+                    System.out.println("LIST OF ALL STUDENTS");
                     while (rs.next()) {
                     System.out.println(rs.getString("Student_ID") + " " + rs.getString("FirstName")+ 
                                   " " + rs.getString("LastName"));
-        
+
                         }
+                    }
+                     catch (Exception e)
+                    {
+                        System.out.println(e);
+                    }
+                    break;
+                }
+                else if(choice2 == 4){
+                    System.out.println("4. Update a Student Record");
+                    System.out.println("Coming Soon");
+                    break;
+                }
+                else if(choice2 == 5){
+                    System.out.println("5. Delete a Student by Student_ID");
+                    System.out.println("Enter Student ID : ");
+                    sid=str.nextLine();                    
+                    //Add other Variasbles later----Task
+                    try
+                    {
+                    Connection conn=getDBConnection();
+                    String deleteq= "delete from Student where Student_ID= '"+sid+"'";
+                    PreparedStatement deletest = conn.prepareStatement(deleteq);
+                    deletest.executeUpdate();
+                    System.out.println("Student Record has been deleted");
                     }
                      catch (Exception e)
                     {
                         e.printStackTrace();
                     }
                     break;
+                }
+                else{
+                    System.out.println("Invalid Selection");
+                }
             }
+        case 7:
+            System.out.println("Thank You");
+            System.exit(0);
+            break;
         }
-    
-    }
+      }
    }
 }
