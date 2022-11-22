@@ -330,7 +330,6 @@ public class JavaMySQLProject {
         break;
         
         case 3:
-            System.out.println("Welcome to the Department Module, Select an operation");
             while(true){
                 System.out.println("Welcome to the Department Module, Select an operation");
                 System.out.println("1. Insert a new Department");
@@ -454,14 +453,13 @@ public class JavaMySQLProject {
             break;
         
         case 4:
-            System.out.println("Welcome to the Exams Module, Select an operation");
             while(true){
                 System.out.println("Welcome to the Exam Module, Select an operation");
                 System.out.println("1. Insert a new Exam");
                 System.out.println("2. Select a Exam by Exam Code");
                 System.out.println("3. Select all Exams");
                 System.out.println("4. Update an Exam");
-                System.out.println("5. Delete a  by Department ID");
+                System.out.println("5. Delete a Exam by Exam Code");
                 System.out.print("Enter a choice: ");
                 int choice4 = in.nextInt();
                 System.out.println("-----------------------------------------");
@@ -583,6 +581,147 @@ public class JavaMySQLProject {
         
         case 5:
             System.out.println("Welcome to the Staff Module, Select an operation");
+             while(true){
+                System.out.println("Welcome to the Staff Module, Select an operation");
+                System.out.println("1. Insert a new Staff");
+                System.out.println("2. Select a Staff by Staff ID");
+                System.out.println("3. Select all Staffs");
+                System.out.println("4. Update a Staff Detail");
+                System.out.println("5. Delete a Staff by Staff ID");
+                System.out.print("Enter a choice: ");
+                int choice4 = in.nextInt();
+                System.out.println("-----------------------------------------");
+                if(choice4 == 1){
+                    //Remember to format the day and time datatype
+                    System.out.println("1. Insert new Staff");
+                    System.out.println("Enter Staff ID : ");
+                    String s_id=str.nextLine();
+                    System.out.println("Enter Saff Salary: ");
+                    String salary=str.nextLine();
+                    System.out.println("Enter Date of Birth: ");
+                    String dob=str.nextLine();
+                    System.out.println("Enter Street: ");
+                    String s_street=str.nextLine();
+                    System.out.println("Enter City: ");
+                    String s_city=str.nextLine();
+                    System.out.println("Enter State: ");
+                    String s_sate=str.nextLine();
+                    System.out.println("Enter Zip: ");
+                    String s_zip=str.nextLine();
+                    System.out.println("Enter Staff Email Address: ");
+                    String s_email=str.nextLine();
+                    System.out.println("Enter First Name: ");
+                    String s_first_name=str.nextLine();
+                    System.out.println("Enter Last Name: ");
+                    String s_last_name=str.nextLine();
+                    System.out.println("Enter Department ID: ");
+                    String dept_id=str.nextLine();
+                    
+                    try
+                    {
+                    //insert data into a table of a database/schema
+                    Connection conn=getDBConnection();
+                    String insertq= "insert into staff(Staff_ID,Birthdate,Street,City,State,Zip,Staff_email,FirstName,LastName,Department_ID) values "
+                            + "('"+s_id+ "','"+salary+"','"+dob+"','"+s_street+"','"+s_city+"','"+s_zip+"','"+s_email+"','"+s_first_name+"','"+s_last_name+"','"+dept_id+"')";
+                    PreparedStatement insertst = conn.prepareStatement(insertq);
+                    insertst.executeUpdate();
+                    System.out.println("The record has been inserted!");
+                    }
+                     catch (Exception e)
+                    {
+                        e.printStackTrace();
+                    }
+                    break;
+                }
+                else if (choice4 == 2){
+                    System.out.println("2. Select an Staff by Staff ID");
+                    System.out.println("Enter Staff ID : ");
+                    String s_id=str.nextLine();                    
+    
+                    try
+                    {
+                    //insert data into a table of a database/schema
+                    Connection conn=getDBConnection();
+                    String selectq= "select * from staff where staff_id like '%"+s_id+"%'";
+                    PreparedStatement selectst = conn.prepareStatement(selectq);
+                    rs= selectst.executeQuery();
+
+                    //Add other student details later--Task
+                    System.out.println("LIST OF STAFF");
+                    System.out.printf("---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------%n");
+                    System.out.printf("| %-10s | %-10s | %-15s | %-15s | %-15s | %-15s | %-10s | %-25s | %-15s | %-15s | %-10s |%n",
+                            "Staff ID","Salary","Date of Birth","Street","City","State","ZIP","Staff Email","First Name","Last Name","Department ID");
+                    System.out.printf("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------%n");
+                    while (rs.next()) {
+                    
+                    System.out.printf("| %-10s | %-10s | %-15s | %-15s | %-15s | %-15s | %-10s | %-25s | %-15s | %-15s | %-10s |%n",
+                            rs.getString("Staff_ID") ,rs.getString("Salary"), rs.getString("Birthdate"), rs.getString("Street"), rs.getString("City"),
+                            rs.getString("State"), rs.getString("Zip"), rs.getString("Staff_email"), rs.getString("FirstName"),
+                            rs.getString("LastName"), rs.getString("Department_ID"));
+                      
+                    }
+                    }
+                     catch (Exception e)
+                    {
+                        e.printStackTrace();
+                    }
+                    break;
+                }
+                else if(choice4 == 3){
+                    System.out.println("3. Select all Exams");
+
+                    try
+                    {
+                    Connection conn=getDBConnection();
+                    String selectq= "select * from exams";
+                    PreparedStatement selectst = conn.prepareStatement(selectq);
+                    rs= selectst.executeQuery();
+
+                    //Add other student details later--Task
+                    System.out.println("LIST OF EXAM");
+                    System.out.printf("------------------------------------------------------%n");
+                    System.out.printf("| %-10s | %-10s | %-10s | %-15s | %-10s |%n","Exam Code","Exam Room","Exam Time","Exam Date","Department ID");
+                    System.out.printf("------------------------------------------------------%n");
+                    while (rs.next()) {
+                    
+                    System.out.printf("| %-10s | %-10s | %-10s | %-15s | %-10s |%n",rs.getString("Exam_Code") ,rs.getString("Room"), rs.getString("Time"), rs.getString("Date"), rs.getString("Department_ID"));
+                      
+                    }
+                    }
+                     catch (Exception e)
+                    {
+                        System.out.println(e);
+                    }
+                    break;
+                }
+                else if(choice4 == 4){
+                    System.out.println("4. Update an Exam Record");
+                    System.out.println("Coming Soon");
+                    break;
+                }
+                else if(choice4 == 5){
+                    System.out.println("5. Delete a Exam by Exam Code");
+                    System.out.println("Enter Exam Code: ");
+                    String e_code=str.nextLine();                    
+                    //Add other Variasbles later----Task
+                    try
+                    {
+                    Connection conn=getDBConnection();
+                    String deleteq= "delete from exams where Exam_Code= '"+e_code+"'";
+                    PreparedStatement deletest = conn.prepareStatement(deleteq);
+                    deletest.executeUpdate();
+                    System.out.println("The record has been deleted!");
+                    }
+                     catch (Exception e)
+                    {
+                        e.printStackTrace();
+                    }
+                    break;
+                }
+                else{
+                    System.out.println("Invalid Selection");
+                } 
+            }
             
             break;
         
