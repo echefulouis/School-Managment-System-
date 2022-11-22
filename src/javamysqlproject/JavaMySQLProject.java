@@ -59,9 +59,9 @@ public class JavaMySQLProject {
         System.out.println("-----------------------------------------");
         System.out.println("Welcome to School Database Management System");
         System.out.println("Enter 1. Student Module");
-        System.out.println("Enter 2. Courses Module");
+        System.out.println("Enter 2. Course Module");
         System.out.println("Enter 3. Department Module");
-        System.out.println("Enter 4. Exams Module");
+        System.out.println("Enter 4. Exam Module");
         System.out.println("Enter 5. Staff Module");
         System.out.println("Enter 6. Class Section Module");
         System.out.println("Enter 7. Exit");
@@ -461,9 +461,9 @@ public class JavaMySQLProject {
                 System.out.println("4. Update an Exam");
                 System.out.println("5. Delete a Exam by Exam Code");
                 System.out.print("Enter a choice: ");
-                int choice4 = in.nextInt();
+                int choice5 = in.nextInt();
                 System.out.println("-----------------------------------------");
-                if(choice4 == 1){
+                if(choice5 == 1){
                     //Remember to format the day and time datatype
                     System.out.println("1. Insert new Exam");
                     System.out.println("Enter Exam code : ");
@@ -492,7 +492,7 @@ public class JavaMySQLProject {
                     }
                     break;
                 }
-                else if (choice4 == 2){
+                else if (choice5 == 2){
                     System.out.println("2. Select an Exam by Exam Code");
                     System.out.println("Enter Exam Code : ");
                     String e_code=str.nextLine();                    
@@ -522,7 +522,7 @@ public class JavaMySQLProject {
                     }
                     break;
                 }
-                else if(choice4 == 3){
+                else if(choice5 == 3){
                     System.out.println("3. Select all Exams");
 
                     try
@@ -549,12 +549,12 @@ public class JavaMySQLProject {
                     }
                     break;
                 }
-                else if(choice4 == 4){
+                else if(choice5 == 4){
                     System.out.println("4. Update an Exam Record");
                     System.out.println("Coming Soon");
                     break;
                 }
-                else if(choice4 == 5){
+                else if(choice5 == 5){
                     System.out.println("5. Delete a Exam by Exam Code");
                     System.out.println("Enter Exam Code: ");
                     String e_code=str.nextLine();                    
@@ -589,14 +589,14 @@ public class JavaMySQLProject {
                 System.out.println("4. Update a Staff Detail");
                 System.out.println("5. Delete a Staff by Staff ID");
                 System.out.print("Enter a choice: ");
-                int choice4 = in.nextInt();
+                int choice6 = in.nextInt();
                 System.out.println("-----------------------------------------");
-                if(choice4 == 1){
+                if(choice6 == 1){
                     //Remember to format the day and time datatype
                     System.out.println("1. Insert new Staff");
-                    System.out.println("Enter Staff ID : ");
+                    System.out.println("Enter staff ID : ");
                     String s_id=str.nextLine();
-                    System.out.println("Enter Saff Salary: ");
+                    System.out.println("Enter saff Salary: ");
                     String salary=str.nextLine();
                     System.out.println("Enter Date of Birth: ");
                     String dob=str.nextLine();
@@ -633,7 +633,7 @@ public class JavaMySQLProject {
                     }
                     break;
                 }
-                else if (choice4 == 2){
+                else if (choice6 == 2){
                     System.out.println("2. Select an Staff by Staff ID");
                     System.out.println("Enter Staff ID : ");
                     String s_id=str.nextLine();                    
@@ -647,7 +647,7 @@ public class JavaMySQLProject {
                     rs= selectst.executeQuery();
 
                     //Add other student details later--Task
-                    System.out.println("LIST OF STAFF");
+                    System.out.println("LIST OF STAFFS");
                     System.out.printf("---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------%n");
                     System.out.printf("| %-10s | %-10s | %-15s | %-15s | %-15s | %-15s | %-10s | %-25s | %-15s | %-15s | %-10s |%n",
                             "Staff ID","Salary","Date of Birth","Street","City","State","ZIP","Staff Email","First Name","Last Name","Department ID");
@@ -667,24 +667,28 @@ public class JavaMySQLProject {
                     }
                     break;
                 }
-                else if(choice4 == 3){
-                    System.out.println("3. Select all Exams");
+                else if(choice6 == 3){
+                    System.out.println("3. Select all Staffs");
 
                     try
                     {
                     Connection conn=getDBConnection();
-                    String selectq= "select * from exams";
+                    String selectq= "select * from staff";
                     PreparedStatement selectst = conn.prepareStatement(selectq);
                     rs= selectst.executeQuery();
 
                     //Add other student details later--Task
-                    System.out.println("LIST OF EXAM");
-                    System.out.printf("------------------------------------------------------%n");
-                    System.out.printf("| %-10s | %-10s | %-10s | %-15s | %-10s |%n","Exam Code","Exam Room","Exam Time","Exam Date","Department ID");
-                    System.out.printf("------------------------------------------------------%n");
+                    System.out.println("LIST OF STAFFS");
+                    System.out.printf("---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------%n");
+                    System.out.printf("| %-10s | %-10s | %-15s | %-15s | %-15s | %-15s | %-10s | %-25s | %-15s | %-15s | %-10s |%n",
+                            "Staff ID","Salary","Date of Birth","Street","City","State","ZIP","Staff Email","First Name","Last Name","Department ID");
+                    System.out.printf("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------%n");
                     while (rs.next()) {
                     
-                    System.out.printf("| %-10s | %-10s | %-10s | %-15s | %-10s |%n",rs.getString("Exam_Code") ,rs.getString("Room"), rs.getString("Time"), rs.getString("Date"), rs.getString("Department_ID"));
+                    System.out.printf("| %-10s | %-10s | %-15s | %-15s | %-15s | %-15s | %-10s | %-25s | %-15s | %-15s | %-10s |%n",
+                            rs.getString("Staff_ID") ,rs.getString("Salary"), rs.getString("Birthdate"), rs.getString("Street"), rs.getString("City"),
+                            rs.getString("State"), rs.getString("Zip"), rs.getString("Staff_email"), rs.getString("FirstName"),
+                            rs.getString("LastName"), rs.getString("Department_ID"));
                       
                     }
                     }
@@ -694,20 +698,20 @@ public class JavaMySQLProject {
                     }
                     break;
                 }
-                else if(choice4 == 4){
+                else if(choice6 == 4){
                     System.out.println("4. Update an Exam Record");
                     System.out.println("Coming Soon");
                     break;
                 }
-                else if(choice4 == 5){
-                    System.out.println("5. Delete a Exam by Exam Code");
-                    System.out.println("Enter Exam Code: ");
-                    String e_code=str.nextLine();                    
+                else if(choice6 == 5){
+                    System.out.println("5. Delete a Staff by Staff ID");
+                    System.out.println("Enter Staff ID: ");
+                    String s_id=str.nextLine();                    
                     //Add other Variasbles later----Task
                     try
                     {
                     Connection conn=getDBConnection();
-                    String deleteq= "delete from exams where Exam_Code= '"+e_code+"'";
+                    String deleteq= "delete from staff where Staff_ID= '"+s_id+"'";
                     PreparedStatement deletest = conn.prepareStatement(deleteq);
                     deletest.executeUpdate();
                     System.out.println("The record has been deleted!");
@@ -727,7 +731,135 @@ public class JavaMySQLProject {
         
         case 6:
             System.out.println("Welcome to the Class Section Module, Select an operation");
-           
+           while(true){
+                System.out.println("Welcome to the Class Section Module, Select an operation");
+                System.out.println("1. Insert a new Class Section");
+                System.out.println("2. Select a Section by Section ID");
+                System.out.println("3. Select all Class Sections");
+                System.out.println("4. Update a Class Section");
+                System.out.println("5. Delete an Section by Section ID");
+                System.out.print("Enter a choice: ");
+                int choice7 = in.nextInt();
+                System.out.println("-----------------------------------------");
+                if(choice7 == 1){
+                    //Remember to format the day and time datatype
+                    System.out.println("1. Insert new Class Section");
+                    System.out.println("Enter Section ID : ");
+                    int section_id=in.nextInt();
+                    System.out.println("Enter Professor ID : ");
+                    String prof_id=str.nextLine();
+                    System.out.println("Enter Session End Time: ");
+                    String s_end_time=str.nextLine();
+                    System.out.println("Enter Session Day: ");
+                    String s_day=str.nextLine();
+                    System.out.println("Enter Session Start Time: ");
+                    String s_start_time=str.nextLine();
+                    System.out.println("Enter Cousrse ID: ");
+                    String s_course_id=str.nextLine();
+      
+                    try
+                    {
+                    //insert data into a table of a database/schema
+                    Connection conn=getDBConnection();
+                    String insertq= "insert into class_section(Section_ID,Professor,End_Time,Day,Start_Time,Courses_CourseID) "
+                            + "values ('"+section_id+ "','"+prof_id+"','"+s_end_time+"','"+s_day+"','"+s_start_time+"','"+s_course_id+"')";
+                    PreparedStatement insertst = conn.prepareStatement(insertq);
+                    insertst.executeUpdate();
+                    System.out.println("The record has been inserted!");
+                    }
+                     catch (Exception e)
+                    {
+                        e.printStackTrace();
+                    }
+                    break;
+                }
+                else if (choice7 == 2){
+                    System.out.println("2. Select a Class Section by Section ID");
+                    System.out.println("Enter Section ID : ");
+                    String section_id=str.nextLine();                    
+    
+                    try
+                    {
+                    //insert data into a table of a database/schema
+                    Connection conn=getDBConnection();
+                    String selectq= "select * from class_section where Section_ID like '%"+section_id+"%'";
+                    PreparedStatement selectst = conn.prepareStatement(selectq);
+                    rs= selectst.executeQuery();
+
+                    //Add other student details later--Task
+                    System.out.println("LIST OF CLASS SECTIONS");
+                    System.out.printf("----------------------------------------------------------------------------------------------%n");
+                    System.out.printf("| %-10s | %-15s | %-20s | %-15s | %-20s | %-10s |%n","Exam Code","Professor ID","Session End Time","Session Day","Session Start Time","Cousrse ID");
+                    System.out.printf("----------------------------------------------------------------------------------------------%n");
+                    while (rs.next()) {
+                    
+                    System.out.printf("| %-10s | %-15s | %-20s | %-15s | %-20s | %-10s |%n",
+                            rs.getString("Section_ID") ,rs.getString("Professor"), rs.getString("End_Time"), rs.getString("Day"), rs.getString("Start_Time"), rs.getString("Courses_CourseID"));
+                      
+                    }
+                    }
+                     catch (Exception e)
+                    {
+                        e.printStackTrace();
+                    }
+                    break;
+                }
+                else if(choice7 == 3){
+                    System.out.println("3. Select all Class Sections");
+
+                    try
+                    {
+                    Connection conn=getDBConnection();
+                    String selectq= "select * from class_section";
+                    PreparedStatement selectst = conn.prepareStatement(selectq);
+                    rs= selectst.executeQuery();
+
+                    //Add other student details later--Task
+                    System.out.println("LIST OF CLASS SECTIONS");
+                    System.out.printf("----------------------------------------------------------------------------------------------%n");
+                    System.out.printf("| %-10s | %-15s | %-20s | %-15s | %-20s | %-10s |%n","Exam Code","Professor ID","Session End Time","Session Day","Session Start Time","Cousrse ID");
+                    System.out.printf("----------------------------------------------------------------------------------------------%n");
+                    while (rs.next()) {
+                    
+                    System.out.printf("| %-10s | %-15s | %-20s | %-15s | %-20s | %-10s |%n",
+                            rs.getString("Section_ID") ,rs.getString("Professor"), rs.getString("End_Time"), rs.getString("Day"), rs.getString("Start_Time"), rs.getString("Courses_CourseID"));
+                      
+                    }
+                    }
+                     catch (Exception e)
+                    {
+                        System.out.println(e);
+                    }
+                    break;
+                }
+                else if(choice7 == 4){
+                    System.out.println("4. Update an Exam Record");
+                    System.out.println("Coming Soon");
+                    break;
+                }
+                else if(choice7 == 5){
+                    System.out.println("5. Delete a Class Section by Section ID");
+                    System.out.println("Enter Section ID: ");
+                    String s_id=str.nextLine();                    
+                    //Add other Variasbles later----Task
+                    try
+                    {
+                    Connection conn=getDBConnection();
+                    String deleteq= "delete from class_section where Section_ID= '"+s_id+"'";
+                    PreparedStatement deletest = conn.prepareStatement(deleteq);
+                    deletest.executeUpdate();
+                    System.out.println("The record has been deleted!");
+                    }
+                     catch (Exception e)
+                    {
+                        e.printStackTrace();
+                    }
+                    break;
+                }
+                else{
+                    System.out.println("Invalid Selection");
+                } 
+            }
             break;
 
         case 7:
