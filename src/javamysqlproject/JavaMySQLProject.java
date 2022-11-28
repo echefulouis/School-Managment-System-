@@ -18,6 +18,7 @@ public class JavaMySQLProject {
     
     public static Connection getDBConnection ()  throws SQLException
     {
+        //Edit to connect to your database
     String connectionurl="jdbc:mysql://127.0.0.1:3306/javaproject";   
     String username ="root";
     String  password="root";
@@ -71,10 +72,11 @@ public class JavaMySQLProject {
         choice1 = in.nextInt();
         System.out.println("-----------------------------------------");
         
-        //Optimize switch statement Later----Task
+        
         switch(choice1){
+            //Student Module
         case 1:    
-            String sid,fname,lname;
+            String email,sid,gender,fname,lname,street,city,state,zip,major_dept,minor_dept;
             while(true){
                 System.out.println("Welcome to the Student Module, Select an operation");
                 System.out.println("1. Insert Student Detail");
@@ -93,13 +95,30 @@ public class JavaMySQLProject {
                     fname=str.nextLine();
                     System.out.println("Enter Student Last Name : : ");
                     lname=str.nextLine();
-
+                    System.out.println("Enter Student Email : ");
+                    email=str.nextLine();
+                    System.out.println("Enter Student gender : ");
+                    gender=str.nextLine();
+                    System.out.println("Enter Street : ");
+                    street=str.nextLine();
+                    System.out.println("Enter City : ");
+                    city=str.nextLine();
+                    System.out.println("Enter State : ");
+                    state=str.nextLine();
+                    System.out.println("Enter Zip Code: ");
+                    zip=str.nextLine();
+                    System.out.println("Enter Major Department ID: ");
+                    major_dept=str.nextLine();
+                    System.out.println("Enter Minor Department ID: ");
+                    minor_dept=str.nextLine();
+                    
                     //Add other Variasbles later----Task
                     try
                     {
                     //insert data into a table of a database/schema
                     Connection conn=getDBConnection();
-                    String insertq= "insert into Student(Student_ID,FirstName,LastName) values ('"+sid+ "','"+fname+"','"+lname+"')";
+                    String insertq= "insert into Student(email,Student_ID,Gender,FirstName,LastName,Street,City,State,Zip,MajorDepartmentID,MinorDepartmentID) "
+                            + "values ('"+email+ "','"+sid+ "','"+gender+"','"+fname+"','"+lname+ "','"+street+"','"+city+"','"+state+ "','"+zip+"','"+major_dept+"','"+minor_dept+ "')";
                     PreparedStatement insertst = conn.prepareStatement(insertq);
                     insertst.executeUpdate();
                     }
@@ -128,12 +147,14 @@ public class JavaMySQLProject {
 
                     //Add other student details later--Task
                     System.out.println("LIST OF ALL STUDENTS");
-                    System.out.printf("---------------------------------------%n");
-                    System.out.printf("| %-10s | %-10s | %10s |%n","Student_ID","FirstName","LastName");
-                    System.out.printf("--------------------------------------%n");
+                    System.out.printf("-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------%n");
+                    System.out.printf("| %-25s | %-20s | %-15s | %-15s |%-15s | %-15s | %-15s | %-15s |%-15s | %-15s | %15s |%n",
+                            "email","Student_ID","Gender","FirstName","LastName","Street","City","State","Zip","MajorDepartmentID","MinorDepartmentID");
+                    System.out.printf("-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------%n");
                     while (rs.next()) {
                     
-                    System.out.printf("| %-10s | %-10s | %10s |%n",rs.getString("Student_ID") ,rs.getString("FirstName"), rs.getString("LastName"));
+                    System.out.printf("| %-25s | %-20s | %-15s | %-15s |%-15s | %-15s | %-15s | %-15s |%-15s | %-15s | %15s |%n",rs.getString("email"),rs.getString("Student_ID"),rs.getString("Gender"),rs.getString("FirstName"), rs.getString("LastName")
+                            ,rs.getString("Street") ,rs.getString("City"), rs.getString("State"), rs.getString("Zip"),rs.getString("MajorDepartmentID"),rs.getString("MinorDepartmentID"));
                        
                         }
                     }
@@ -157,12 +178,14 @@ public class JavaMySQLProject {
 
                     //Add other student details later--Task
                     System.out.println("LIST OF ALL STUDENTS");
-                    System.out.printf("---------------------------------------%n");
-                    System.out.printf("| %-10s | %-10s | %10s |%n","Student_ID","FirstName","LastName");
-                    System.out.printf("--------------------------------------%n");
+                    System.out.printf("-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------%n");
+                    System.out.printf("| %-25s | %-20s | %-15s | %-15s |%-15s | %-15s | %-15s | %-15s |%-15s | %-15s | %15s |%n",
+                            "email","Student_ID","Gender","FirstName","LastName","Street","City","State","Zip","MajorDepartmentID","MinorDepartmentID");
+                    System.out.printf("-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------%n");
                     while (rs.next()) {
                     
-                    System.out.printf("| %-10s | %-10s | %10s |%n",rs.getString("Student_ID") ,rs.getString("FirstName"), rs.getString("LastName"));
+                    System.out.printf("| %-25s | %-20s | %-15s | %-15s |%-15s | %-15s | %-15s | %-15s |%-15s | %-15s | %15s |%n",rs.getString("email"),rs.getString("Student_ID"),rs.getString("Gender"),rs.getString("FirstName"), rs.getString("LastName")
+                            ,rs.getString("Street") ,rs.getString("City"), rs.getString("State"), rs.getString("Zip"),rs.getString("MajorDepartmentID"),rs.getString("MinorDepartmentID"));
                        
                         }
                     }
@@ -174,7 +197,51 @@ public class JavaMySQLProject {
                 }
                 else if(choice2 == 4){
                     System.out.println("4. Update a Student Record");
-                    System.out.println("Coming Soon");
+                    System.out.println("Enter Student ID to update the student record: ");
+                    sid=str.nextLine();
+                    
+                    System.out.println("Select Student details to Update: ");
+                
+                    System.out.println("1. Student First Name : ");
+                    
+                    System.out.println("2. Student Last Name : : ");
+                    
+                    System.out.println("3. Student Email : ");
+                    
+                    System.out.println("4. Student Gender");
+                    
+                    System.out.println("5. Street ");
+                    
+                    System.out.println("6. City ");
+                    
+                    System.out.println("7. State ");
+                    
+                    System.out.println("8. Zip Code: ");
+                    
+                    System.out.println("9. Major Department ID: ");
+                    
+                    System.out.println("10. Minor Department ID: ");
+                    
+                    int selection=in.nextInt();
+                    if (selection == 1){
+                        System.out.println("Enter New Student First Name : ");
+                        fname=str.nextLine();
+                        
+                        try
+                        {
+                        Connection conn=getDBConnection();
+                        String updateq= "update Student set FirstName = '"+fname+"' where Student_ID= '"+sid+"'";
+                        PreparedStatement updatest = conn.prepareStatement(updateq);
+                        updatest.executeUpdate();
+                        System.out.println("The record has been deleted!");
+                        }
+                         catch (Exception e)
+                        {
+                            e.printStackTrace();
+                        }
+                        break;
+                    }
+                    
                     break;
                 }
                 else if(choice2 == 5){
@@ -247,16 +314,16 @@ public class JavaMySQLProject {
                     System.out.println("2. Select a Course by Course ID");
                     System.out.println("Enter Course ID : ");
                     String c_id=str.nextLine();                    
-                    //Add other Variasbles later----Task
+               
                     try
                     {
-                    //insert data into a table of a database/schema
+                    
                     Connection conn=getDBConnection();
                     String selectq= "select * from courses where CourseID like '%"+c_id+"%'";
                     PreparedStatement selectst = conn.prepareStatement(selectq);
                     rs= selectst.executeQuery();
 
-                    //Add other student details later--Task
+                   
                     System.out.println("LIST OF COURSES");
                     System.out.printf("--------------------------------------------------------------------------------%n");
                     System.out.printf("| %-35s | %-10s | %-10s | %-10s |%n","Course Name","Course ID","Staff ID","Department ID");
@@ -283,7 +350,7 @@ public class JavaMySQLProject {
                     PreparedStatement selectst = conn.prepareStatement(selectq);
                     rs= selectst.executeQuery();
 
-                    //Add other student details later--Task
+                   
                     System.out.println("LIST OF COURSES");
                     System.out.printf("-------------------------------------------------------------------------------%n");
                     System.out.printf("| %-35s | %-10s | %-10s | %-10s |%n","Course Name","Course ID","Staff ID","Department ID");
@@ -308,7 +375,7 @@ public class JavaMySQLProject {
                     System.out.println("5. Delete a Course by Course ID");
                     System.out.println("Enter Course ID : ");
                     String c_id=str.nextLine();                    
-                    //Add other Variasbles later----Task
+                 
                     try
                     {
                     Connection conn=getDBConnection();
@@ -372,13 +439,13 @@ public class JavaMySQLProject {
     
                     try
                     {
-                    //insert data into a table of a database/schema
+                    
                     Connection conn=getDBConnection();
                     String selectq= "select * from department where Department_ID like '%"+dept_id+"%'";
                     PreparedStatement selectst = conn.prepareStatement(selectq);
                     rs= selectst.executeQuery();
 
-                    //Add other student details later--Task
+                    
                     System.out.println("LIST OF DEPARTMENTS");
                     System.out.printf("------------------------------------------------------%n");
                     System.out.printf("| %-15s | %-35s | %-35s |%n","Department ID","Department Name","Staff ID","Program Name");
@@ -605,7 +672,7 @@ public class JavaMySQLProject {
                     System.out.println("Enter City: ");
                     String s_city=str.nextLine();
                     System.out.println("Enter State: ");
-                    String s_sate=str.nextLine();
+                    String s_state=str.nextLine();
                     System.out.println("Enter Zip: ");
                     String s_zip=str.nextLine();
                     System.out.println("Enter Staff Email Address: ");
