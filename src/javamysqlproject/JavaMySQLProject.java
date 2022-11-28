@@ -148,12 +148,12 @@ public class JavaMySQLProject {
                     //Add other student details later--Task
                     System.out.println("LIST OF ALL STUDENTS");
                     System.out.printf("-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------%n");
-                    System.out.printf("| %-25s | %-20s | %-15s | %-15s |%-15s | %-15s | %-15s | %-15s |%-15s | %-15s | %15s |%n",
+                    System.out.printf("| %-25s | %-15s | %-8s | %-15s |%-15s | %-15s | %-15s | %-10s |%-10s | %-15s | %15s |%n",
                             "email","Student_ID","Gender","FirstName","LastName","Street","City","State","Zip","MajorDepartmentID","MinorDepartmentID");
                     System.out.printf("-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------%n");
                     while (rs.next()) {
                     
-                    System.out.printf("| %-25s | %-20s | %-15s | %-15s |%-15s | %-15s | %-15s | %-15s |%-15s | %-15s | %15s |%n",rs.getString("email"),rs.getString("Student_ID"),rs.getString("Gender"),rs.getString("FirstName"), rs.getString("LastName")
+                    System.out.printf("| %-25s | %-15s | %-8s | %-15s |%-15s | %-15s | %-15s | %-10s |%-10s | %-15s | %15s |%n",rs.getString("email"),rs.getString("Student_ID"),rs.getString("Gender"),rs.getString("FirstName"), rs.getString("LastName")
                             ,rs.getString("Street") ,rs.getString("City"), rs.getString("State"), rs.getString("Zip"),rs.getString("MajorDepartmentID"),rs.getString("MinorDepartmentID"));
                        
                         }
@@ -179,12 +179,12 @@ public class JavaMySQLProject {
                     //Add other student details later--Task
                     System.out.println("LIST OF ALL STUDENTS");
                     System.out.printf("-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------%n");
-                    System.out.printf("| %-25s | %-20s | %-15s | %-15s |%-15s | %-15s | %-15s | %-15s |%-15s | %-15s | %15s |%n",
+                    System.out.printf("| %-25s | %-15s | %-8s | %-15s |%-15s | %-15s | %-15s | %-10s |%-10s | %-15s | %15s |%n",
                             "email","Student_ID","Gender","FirstName","LastName","Street","City","State","Zip","MajorDepartmentID","MinorDepartmentID");
                     System.out.printf("-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------%n");
                     while (rs.next()) {
                     
-                    System.out.printf("| %-25s | %-20s | %-15s | %-15s |%-15s | %-15s | %-15s | %-15s |%-15s | %-15s | %15s |%n",rs.getString("email"),rs.getString("Student_ID"),rs.getString("Gender"),rs.getString("FirstName"), rs.getString("LastName")
+                    System.out.printf("| %-25s | %-15s | %-8s | %-15s |%-15s | %-15s | %-15s | %-10s |%-10s | %-15s | %15s |%n",rs.getString("email"),rs.getString("Student_ID"),rs.getString("Gender"),rs.getString("FirstName"), rs.getString("LastName")
                             ,rs.getString("Street") ,rs.getString("City"), rs.getString("State"), rs.getString("Zip"),rs.getString("MajorDepartmentID"),rs.getString("MinorDepartmentID"));
                        
                         }
@@ -233,7 +233,43 @@ public class JavaMySQLProject {
                         String updateq= "update Student set FirstName = '"+fname+"' where Student_ID= '"+sid+"'";
                         PreparedStatement updatest = conn.prepareStatement(updateq);
                         updatest.executeUpdate();
-                        System.out.println("The record has been deleted!");
+                        System.out.println("The record has been updated!");
+                        }
+                         catch (Exception e)
+                        {
+                            e.printStackTrace();
+                        }
+                        break;
+                    }
+                    else if(selection == 2){
+                        System.out.println("Enter New Student Last Name : ");
+                        lname=str.nextLine();
+                        
+                        try
+                        {
+                        Connection conn=getDBConnection();
+                        String updateq= "update Student set LastName = '"+lname+"' where Student_ID= '"+sid+"'";
+                        PreparedStatement updatest = conn.prepareStatement(updateq);
+                        updatest.executeUpdate();
+                        System.out.println("The record has been updated!");
+                        }
+                         catch (Exception e)
+                        {
+                            e.printStackTrace();
+                        }
+                        break;
+                    }
+                    else if(selection == 3){
+                        System.out.println("Enter New Student Email : ");
+                        email=str.nextLine();
+                        
+                        try
+                        {
+                        Connection conn=getDBConnection();
+                        String updateq= "update Student set email = '"+email+"' where Student_ID= '"+sid+"'";
+                        PreparedStatement updatest = conn.prepareStatement(updateq);
+                        updatest.executeUpdate();
+                        System.out.println("The record has been updated!");
                         }
                          catch (Exception e)
                         {
@@ -242,6 +278,142 @@ public class JavaMySQLProject {
                         break;
                     }
                     
+                    else if(selection == 4){
+                        System.out.println("Enter New Student Gender : ");
+                        gender=str.nextLine();
+                        
+                        try
+                        {
+                        Connection conn=getDBConnection();
+                        String updateq= "update Student set Gender = '"+gender+"' where Student_ID= '"+sid+"'";
+                        PreparedStatement updatest = conn.prepareStatement(updateq);
+                        updatest.executeUpdate();
+                        System.out.println("The record has been updated!");
+                        }
+                         catch (Exception e)
+                        {
+                            e.printStackTrace();
+                        }
+                        break;
+                    }
+                    
+                    else if(selection == 5){
+                        System.out.println("Enter Student New Street : ");
+                        street=str.nextLine();
+                        
+                        try
+                        {
+                        Connection conn=getDBConnection();
+                        String updateq= "update Student set Street = '"+street+"' where Student_ID= '"+sid+"'";
+                        PreparedStatement updatest = conn.prepareStatement(updateq);
+                        updatest.executeUpdate();
+                        System.out.println("The record has been updated!");
+                        }
+                         catch (Exception e)
+                        {
+                            e.printStackTrace();
+                        }
+                        break;
+                    }
+                    
+                    else if(selection == 6){
+                        System.out.println("Enter Student New City : ");
+                        city=str.nextLine();
+                        
+                        try
+                        {
+                        Connection conn=getDBConnection();
+                        String updateq= "update Student set City = '"+city+"' where Student_ID= '"+sid+"'";
+                        PreparedStatement updatest = conn.prepareStatement(updateq);
+                        updatest.executeUpdate();
+                        System.out.println("The record has been updated!");
+                        }
+                         catch (Exception e)
+                        {
+                            e.printStackTrace();
+                        }
+                        break;
+                    }
+                    
+                    else if(selection == 7){
+                        System.out.println("Enter Student New State : ");
+                        state=str.nextLine();
+                        
+                        try
+                        {
+                        Connection conn=getDBConnection();
+                        String updateq= "update Student set State = '"+state+"' where Student_ID= '"+sid+"'";
+                        PreparedStatement updatest = conn.prepareStatement(updateq);
+                        updatest.executeUpdate();
+                        System.out.println("The record has been updated!");
+                        }
+                         catch (Exception e)
+                        {
+                            e.printStackTrace();
+                        }
+                        break;
+                    }
+                    
+                    else if(selection == 8){
+                        System.out.println("Enter Student New Zip : ");
+                        zip=str.nextLine();
+                        
+                        try
+                        {
+                        Connection conn=getDBConnection();
+                        String updateq= "update Student set Zip = '"+zip+"' where Student_ID= '"+sid+"'";
+                        PreparedStatement updatest = conn.prepareStatement(updateq);
+                        updatest.executeUpdate();
+                        System.out.println("The record has been updated!");
+                        }
+                         catch (Exception e)
+                        {
+                            e.printStackTrace();
+                        }
+                        break;
+                    }
+                    
+                    else if(selection == 9){
+                        System.out.println("Enter Student New Major Department : ");
+                        major_dept=str.nextLine();
+                        
+                        try
+                        {
+                        Connection conn=getDBConnection();
+                        String updateq= "update Student set MajorDepartmentID = '"+major_dept+"' where Student_ID= '"+sid+"'";
+                        PreparedStatement updatest = conn.prepareStatement(updateq);
+                        updatest.executeUpdate();
+                        System.out.println("The record has been updated!");
+                        }
+                         catch (Exception e)
+                        {
+                            e.printStackTrace();
+                        }
+                        break;
+                    }
+                    
+                    else if(selection == 10){
+                        System.out.println("Enter Student New Minor Department : ");
+                        minor_dept=str.nextLine();
+                        
+                        try
+                        {
+                        Connection conn=getDBConnection();
+                        String updateq= "update Student set MinorDepartmentID = '"+minor_dept+"' where Student_ID= '"+sid+"'";
+                        PreparedStatement updatest = conn.prepareStatement(updateq);
+                        updatest.executeUpdate();
+                        System.out.println("The record has been updated!");
+                        }
+                         catch (Exception e)
+                        {
+                            e.printStackTrace();
+                        }
+                        break;
+                    }
+                    
+                    else{
+                        System.out.println("Wrong Input");
+                    }
                     break;
                 }
                 else if(choice2 == 5){
